@@ -3,7 +3,7 @@ package main
 import (
 	"github.com/integram-org/gitlab"
 	"github.com/integram-org/trello"
-	"github.com/kelseyhightower/envconfig"
+	"github.com/integram-org/webhook"
 	"github.com/requilence/integram"
 	"os"
 )
@@ -29,6 +29,13 @@ func main() {
 			},
 		},
 		os.Getenv("GITLAB_BOT_TOKEN"),
+	)
+
+	var webhookCfg webhook.Config
+
+	integram.Register(
+		webhookCfg,
+		os.Getenv("WEBHOOK_BOT_TOKEN"),
 	)
 
 	integram.Run()
